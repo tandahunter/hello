@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"strings"
+	"time"
 
 	"github.com/tandahunter/stringutil"
 )
@@ -28,12 +29,17 @@ func printFirstArgument() {
 }
 
 func printAllArguments() {
+	start := time.Now()
 	for _, a := range os.Args[1:] {
 		fmt.Printf("%s ", a)
 	}
+
+	fmt.Printf("%d nanoseconds", time.Since(start).Nanoseconds())
 	fmt.Println()
 }
 
 func printAllArgumentsFast() {
+	start := time.Now()
 	fmt.Printf("%s", strings.Join(os.Args[1:], " "))
+	fmt.Printf("%d nanoseconds", time.Since(start).Nanoseconds())
 }
